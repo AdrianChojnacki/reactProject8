@@ -17,11 +17,22 @@ class List extends React.Component {
     ],
   };
 
-  handleClick(id) {
-    const people = [...this.state.people];
-    const index = people.findIndex((person) => person.id === id);
+  // handleClick(id) {
+  //   const people = [...this.state.people];
+  //   const index = people.findIndex((person) => person.id === id);
 
-    people.splice(index, 1);
+  //   people.splice(index, 1);
+
+  //   this.setState({
+  //     people,
+  //   });
+  // }
+
+  handleClick(name) {
+    // let people = Array.from(this.state.people);
+    let people = this.state.people.slice();
+
+    people = people.filter((person) => person.name !== name);
 
     this.setState({
       people,
@@ -29,11 +40,19 @@ class List extends React.Component {
   }
 
   render() {
+    // const people = this.state.people.map((person, index) => (
+    //   <Person
+    //     key={person.id}
+    //     name={person.name}
+    //     handleClick={this.handleClick.bind(this, person.id)}
+    //   />
+    // ));
+
     const people = this.state.people.map((person, index) => (
       <Person
         key={person.id}
         name={person.name}
-        handleClick={this.handleClick.bind(this, person.id)}
+        handleClick={this.handleClick.bind(this, person.name)}
       />
     ));
 
