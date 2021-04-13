@@ -28,11 +28,11 @@ class List extends React.Component {
   //   });
   // }
 
-  handleClick(name) {
+  handleClick(id) {
     // let people = Array.from(this.state.people);
     let people = this.state.people.slice();
 
-    people = people.filter((person) => person.name !== name);
+    people = people.filter((person) => person.id !== id);
 
     this.setState({
       people,
@@ -48,11 +48,11 @@ class List extends React.Component {
     //   />
     // ));
 
-    const people = this.state.people.map((person, index) => (
+    const people = this.state.people.map((person) => (
       <Person
         key={person.id}
         name={person.name}
-        handleClick={this.handleClick.bind(this, person.name)}
+        handleClick={this.handleClick.bind(this, person.id)}
       />
     ));
 
