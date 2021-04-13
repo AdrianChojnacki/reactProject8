@@ -1,8 +1,17 @@
+// const Person = (props) => {
+//   return (
+//     <li>
+//       <span>{props.name}</span>
+//       <button onClick={props.handleClick}>Usuń</button>
+//     </li>
+//   );
+// };
+
 const Person = (props) => {
   return (
     <li>
       <span>{props.name}</span>
-      <button onClick={props.handleClick}>Usuń</button>
+      <button onClick={() => props.handleClick(props.id)}>Usuń</button>
     </li>
   );
 };
@@ -28,7 +37,7 @@ class List extends React.Component {
   //   });
   // }
 
-  handleClick(id) {
+  handleClick = (id) => {
     // let people = Array.from(this.state.people);
     let people = this.state.people.slice();
 
@@ -37,7 +46,7 @@ class List extends React.Component {
     this.setState({
       people,
     });
-  }
+  };
 
   render() {
     // const people = this.state.people.map((person, index) => (
@@ -49,11 +58,7 @@ class List extends React.Component {
     // ));
 
     const people = this.state.people.map((person) => (
-      <Person
-        key={person.id}
-        name={person.name}
-        handleClick={this.handleClick.bind(this, person.id)}
-      />
+      <Person key={person.id} id={person.id} name={person.name} handleClick={this.handleClick} />
     ));
 
     return <ul>{people}</ul>;
