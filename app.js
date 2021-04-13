@@ -9,7 +9,6 @@ const Person = (props) => {
 
 class List extends React.Component {
   state = {
-    // people: ["Jan K.", "Piotr C.", "Marysia W.", "John S."],
     people: [
       { id: 1, name: "Jan K." },
       { id: 2, name: "Piotr C." },
@@ -18,18 +17,24 @@ class List extends React.Component {
     ],
   };
 
-  handleClick = (index) => {
-    let people = this.state.people;
+  handleClick(id) {
+    const people = [...this.state.people];
+    const index = people.findIndex((person) => person.id === id);
+
     people.splice(index, 1);
 
     this.setState({
       people,
     });
-  };
+  }
 
   render() {
     const people = this.state.people.map((person, index) => (
-      <Person key={person.id} name={person.name} handleClick={this.handleClick.bind(this, index)} />
+      <Person
+        key={person.id}
+        name={person.name}
+        handleClick={this.handleClick.bind(this, person.id)}
+      />
     ));
 
     return <ul>{people}</ul>;
